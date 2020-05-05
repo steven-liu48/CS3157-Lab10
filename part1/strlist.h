@@ -28,7 +28,7 @@ class StrList {
 
     public:
 
-        // TODO: The basic 4.
+        // The basic 4.
         /*
            Don't worry about efficiency in this assignment.  Do what's
            the easiest.  For example, in order to append elements from
@@ -40,7 +40,14 @@ class StrList {
            rather inefficiency due to the deficiency of the old list
            API.
          */
+		
+		StrList();
 
+		~StrList();
+		
+		StrList(const StrList& l);
+
+		StrList& operator=(const StrList& l);
 
         // isEmpty() function
         /*
@@ -51,11 +58,12 @@ class StrList {
         int isEmpty() const { return isEmptyList((List *)&list); }
 
 
-        // TODO: size() function
+        // size() function
         // returns the number of nodes in the list
-
-
-        // TODO: addFront() function 
+		// int size();
+		
+		int size() const;
+        // addFront() function 
         // adds a string to the front of the list
         /*
            Note that in order to call the global addFront() function
@@ -63,25 +71,25 @@ class StrList {
            you're writing) you have to append "::" in front, as in
            "::addFront(&list, ......)".
          */
+		void addFront(const MyString str);
 
-
-        // TODO: popFront() function 
+        // popFront() function 
         // Pops a string from the front of the list and returns it.
         // The result of popping from an empty list is undefined.
+		MyString popFront();
 
-
-        // TODO: reverse() function
+        // reverse() function
         // reverse the elements in the list
+		void reverse();
 
-
-        // TODO: operator+=
+        // operator+=
         // The result of "sl += sl" is undefined.
+		StrList& operator+=(const StrList& rhs);
 
+        // operator+
+		friend StrList operator+(const StrList& lhs, const StrList& rhs);
 
-        // TODO: operator+
-
-
-        // TODO: operator<<
+        // operator<<
         // Prints the content of the given list in the following
         // format: 
         //
@@ -89,16 +97,17 @@ class StrList {
         // 
         // assuming you had the three strings ("one", "two", "three")
         // in the list.
+		friend ostream& operator<<(ostream& os, const StrList& l);
 
-
-        // TODO: operator[] 
+        // operator[] 
         // This function takes O(n) time.
         // The result of accessing beyond the last element is undefined.
-
+		MyString& operator[](int n);
 
         // TODO: operator[] const
         // This function takes O(n) time.
         // The result of accessing beyond the last element is undefined.
+		const MyString& operator[](int n) const;
 
     private:
 

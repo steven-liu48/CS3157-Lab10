@@ -87,7 +87,7 @@ class StrList {
 		StrList& operator+=(const StrList& rhs);
 
         // operator+
-		friend StrList operator+(const StrList& lhs, const StrList& rhs);
+		StrList operator+(const StrList& rhs);
 
         // operator<<
         // Prints the content of the given list in the following

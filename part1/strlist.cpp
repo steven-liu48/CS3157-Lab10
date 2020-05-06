@@ -1,6 +1,5 @@
 #include <cstring>
 #include <cstdio>
-    
 #include "strlist.h"
 
 using namespace std;
@@ -16,7 +15,6 @@ StrList::StrList() {
 StrList::~StrList() {
 	while(!isEmpty()){
 		MyString *s = (MyString *)::popFront(&list);
-		//cout << "Pop" << *s << endl;
 		delete s;
 	}
 }
@@ -27,9 +25,7 @@ StrList::StrList(const StrList& l) {
 	initList(&list);
 	struct Node *node = l.list.head;
     while (node) {
-    	MyString *original = (MyString *)node->data;
-		MyString *copy = new MyString(*original);
-		//cout << "Copied" << *copy << endl;
+		MyString *copy = new MyString(*(MyString *) node->data);
 		::addBack(&list, copy);
     	node = node->next;
     }
@@ -39,7 +35,6 @@ StrList::StrList(const StrList& l) {
 
 StrList& StrList::operator=(const StrList& l) {
 	if (this == &l) {
-		//cout << "SAME!" << endl;
 		return *this;
 	}
 	while (!isEmpty()){
@@ -48,9 +43,8 @@ StrList& StrList::operator=(const StrList& l) {
 	}
 	struct Node *node = l.list.head;
     while (node) {
-        MyString *original = (MyString *)node->data;
-        MyString *copy = new MyString(*original);
-        ::addBack(&list, copy);
+        MyString *copy = new MyString(*(MyString *) node->data); 
+		::addBack(&list, copy);
         node = node->next;
     }
 	return *this;
@@ -59,20 +53,19 @@ StrList& StrList::operator=(const StrList& l) {
 // size()
 
 int StrList::size() const{
-	int size = 0;
+	int counter = 0;
 	struct Node *node = list.head;
     while (node) {
-        size++;
+        counter++;
         node = node->next;
     }
-	return size;
+	return counter;
 }
 
 // addFront()
 
 void StrList::addFront(const MyString str){
 	MyString *newString = new MyString(str);
-	//cout << "Added " << *newString << endl;
 	::addFront(&list, newString);
 }
 
@@ -111,9 +104,8 @@ StrList& StrList::operator+=(const StrList& rhs){
 
 // operator+
 
-StrList operator+(const StrList& lhs, const StrList& rhs){
-	StrList copy;
-	copy += lhs;
+StrList StrList::operator+(const StrList& rhs){
+	StrList copy = *this;
 	copy += rhs;
 	return copy;
 }

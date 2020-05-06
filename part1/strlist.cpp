@@ -14,8 +14,8 @@ StrList::StrList() {
 
 StrList::~StrList() {
 	while(!isEmpty()){
-		MyString *s = (MyString *)::popFront(&list);
-		delete s;
+		MyString *pop = (MyString *)::popFront(&list);
+		delete pop;
 	}
 }
 
@@ -25,8 +25,8 @@ StrList::StrList(const StrList& l) {
 	initList(&list);
 	struct Node *node = l.list.head;
     while (node) {
-		MyString *copy = new MyString(*(MyString *) node->data);
-		::addBack(&list, copy);
+		MyString *cpy = new MyString(*(MyString *) node->data);
+		::addBack(&list, cpy);
     	node = node->next;
     }
 }
@@ -38,13 +38,13 @@ StrList& StrList::operator=(const StrList& l) {
 		return *this;
 	}
 	while (!isEmpty()){
-		MyString *s = (MyString *)::popFront(&list);
-        delete s;
+		MyString *pop = (MyString *)::popFront(&list);
+        delete pop;
 	}
 	struct Node *node = l.list.head;
     while (node) {
-        MyString *copy = new MyString(*(MyString *) node->data); 
-		::addBack(&list, copy);
+        MyString *cpy = new MyString(*(MyString *) node->data); 
+		::addBack(&list, cpy);
         node = node->next;
     }
 	return *this;
@@ -65,17 +65,17 @@ int StrList::size() const{
 // addFront()
 
 void StrList::addFront(const MyString str){
-	MyString *newString = new MyString(str);
-	::addFront(&list, newString);
+	MyString *addstr = new MyString(str);
+	::addFront(&list, addstr);
 }
 
 // popFront()
 
 MyString StrList::popFront(){
-	MyString *s = (MyString *)::popFront(&list);
-	if(s != NULL){
-    	MyString temp(*s);
-		delete s;
+	MyString *pop = (MyString *)::popFront(&list);
+	if(pop != NULL){
+    	MyString temp(*pop);
+		delete pop;
 		return temp;
 	} else {
 		return NULL;
@@ -94,8 +94,8 @@ StrList& StrList::operator+=(const StrList& rhs){
 	struct Node *node = rhs.list.head;
     reverse();
     while (node) {
-         MyString *copy = new MyString(*(MyString *) node->data);
-         ::addFront(&list, copy);
+         MyString *addstr = new MyString(*(MyString *) node->data);
+         ::addFront(&list, addstr);
          node = node->next;
     }
     reverse();

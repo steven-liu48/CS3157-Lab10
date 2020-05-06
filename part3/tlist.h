@@ -16,7 +16,6 @@ class TList;
 template <typename T>
 ostream& operator<<(ostream& os, const TList<T>& l);
 
-
 template <typename T>
 class TList
 {
@@ -43,8 +42,7 @@ class TList
 		const T& operator[](int n) const;
 		
 	private:
-
-	vector<T> vct;
+		vector<T> vct;
 };
 
 
@@ -73,7 +71,7 @@ void TList<T>::addFront(const T& t){
 
 template <typename T>
 T TList<T>::popFront(){
-	T t = (T) vct.front();
+	T t = vct.front();
 	reverse();
 	vct.pop_back();
 	reverse();
@@ -93,7 +91,6 @@ TList<T>& TList<T>::operator+=(const TList<T>& rhs){
 	return *this;
 }
 
-//?
 template <typename T>
 TList<T> TList<T>::operator+(const TList<T> &rhs){
     TList<T> copy = *this;

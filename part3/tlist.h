@@ -114,14 +114,15 @@ ostream& operator<<(ostream& os, const TList<T>& l){
 
 template <typename T>
 T& TList<T>::operator[](int n){
-	int counter = 0;
+	/*int counter = 0;
 	typename vector<T>::iterator node = vct.begin();
 	while (node != vct.end()){
 		if (counter == n) {break;}
 		node++;
 		counter++;
 	}
-	return *node;
+	return *node;*/
+		return vct.at(n);
 }
 
 
